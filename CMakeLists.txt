@@ -20,12 +20,11 @@ find_package(
 	REQUIRED
 )
 
-configure_file("${CMAKE_SOURCE_DIR}/include/DirectoryConfig.hpp.in" "${CMAKE_SOURCE_DIR}/include/DirectoryConfig.hpp")
-
 option(TESTING "Whether to compile the tests" OFF)
 
 if(TESTING)
 	# Test Definition
+	configure_file("${CMAKE_SOURCE_DIR}/include/DirectoryConfig.hpp.in" "${CMAKE_SOURCE_DIR}/include/DirectoryConfig.hpp")
 	set(includes_list ${Boost_INCLUDE_DIRS} "${CMAKE_SOURCE_DIR}/include")
 	set(SOURCES "test/test.cpp")
 	add_executable(test ${SOURCES})

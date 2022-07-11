@@ -6,7 +6,6 @@
 * [Prerequisites](#prerequisites)
 * [Testing](#test)
 * [Contact](#contact)
-* [Acknowledgements](#acknowledgements)
 
 ## About
 
@@ -18,6 +17,8 @@ access to Excel files.
 * CMake version 3.22
 * Boost version 1.75
 * libzip
+
+All the dependancies need to be installed beforehand in a location that CMake can find them with find_package (I used vcpkg on Windows).
 
 ## Test
 
