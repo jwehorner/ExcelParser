@@ -54,7 +54,7 @@ int test_getSheet()
 		{
 			++test_passes;
 		}
-		sheet sheet2 = parser->getSheet(test_name, "sheet2");
+		sheet sheet2 = parser->getSheet(test_name, "2sheetOrNot2sheet");
 		if (sheet2.size() > 0)
 		{
 			++test_passes;
