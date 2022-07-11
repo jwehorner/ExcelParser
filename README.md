@@ -9,7 +9,7 @@
 
 ## About
 
-A simple header only library for accessing Excel sheets in C++ that uses the singleton pattern to load, store, and control 
+A simple library for accessing Excel sheets in C++ that uses the singleton pattern to load, store, and control 
 access to Excel files.
 
 ## Prerequisites

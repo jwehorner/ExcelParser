@@ -21,12 +21,13 @@ find_package(
 )
 
 option(TESTING "Whether to compile the tests" OFF)
+set(TESTING ON)
 
 if(TESTING)
 	# Test Definition
 	configure_file("${CMAKE_SOURCE_DIR}/include/DirectoryConfig.hpp.in" "${CMAKE_SOURCE_DIR}/include/DirectoryConfig.hpp")
 	set(includes_list ${Boost_INCLUDE_DIRS} "${CMAKE_SOURCE_DIR}/include")
-	set(SOURCES "test/test.cpp")
+	set(SOURCES "test/test.cpp" "${CMAKE_SOURCE_DIR}/include/ExcelParser.cpp")
 	add_executable(test ${SOURCES})
 	target_include_directories(test PUBLIC ${includes_list})
 	target_link_libraries(test ${Boost_LIBRARIES} libzip::zip)
