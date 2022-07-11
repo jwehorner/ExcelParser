@@ -16,9 +16,13 @@ configure_file("${CMAKE_SOURCE_DIR}/include/DirectoryConfig.hpp.in" "${CMAKE_SOU
 
 include(deps/libzip.cmake)
 
-# Test Definition
-set(includes_list ${Boost_INCLUDE_DIRS} "${CMAKE_SOURCE_DIR}/include" ${LIBZIP_INCLUDE_DIR})
-set(SOURCES "test/test.cpp")
-add_executable(test ${SOURCES})
-target_include_directories(test PUBLIC ${includes_list})
-target_link_libraries(test ${Boost_LIBRARIES} zip)
+option(TESTING OFF)
+
+if(TESTING)
+	# Test Definition
+	set(includes_list ${Boost_INCLUDE_DIRS} "${CMAKE_SOURCE_DIR}/include" ${LIBZIP_INCLUDE_DIR})
+	set(SOURCES "test/test.cpp")
+	add_executable(test ${SOURCES})
+	target_include_directories(test PUBLIC ${includes_list})
+	target_link_libraries(test ${Boost_LIBRARIES} zip)
+endif()
