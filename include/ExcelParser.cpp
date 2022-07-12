@@ -47,6 +47,19 @@ void ExcelParser::openExcelFile(std::string file_name)
 	}
 }
 
+void ExcelParser::closeExcelFile(std::string file_name)
+{
+	std::lock_guard<std::mutex> lock(io_mutex);
+	if (sheets_map.find(file_name) != sheets_map.end())
+	{
+		sheets_map.erase(file_name);
+	}
+	if (shared_strings_map.find(file_name) != shared_strings_map.end())
+	{
+		shared_strings_map.erase(file_name);
+	}
+}
+
 sheet ExcelParser::getSheet(std::string file_name, std::string sheet_name)
 {
 	std::lock_guard<std::mutex> lock(io_mutex);

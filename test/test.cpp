@@ -8,6 +8,7 @@ using namespace std;
 using namespace excel_parser;
 
 int test_openExcelFile();
+int test_closeExcelFile();
 int test_getSheet();
 int test_getSharedString();
 int test_getSheetNames();
@@ -15,13 +16,15 @@ int test_getSheetNames();
 int main()
 {
 	int passed = test_openExcelFile();
-	cout << "Get openExcelFile passed " << passed << "/1 tests." << endl;
+	cout << "Test of openExcelFile passed " << passed << "/1 tests." << endl;
+	passed = test_closeExcelFile();
+	cout << "Test of closeExcelFile passed " << passed << "/1 tests." << endl;
 	passed = test_getSheet();
-	cout << "Get getSheet passed " << passed << "/2 tests." << endl;
+	cout << "Test of getSheet passed " << passed << "/2 tests." << endl;
 	passed = test_getSharedString();
-	cout << "Get getSharedString passed " << passed << "/2 tests." << endl;
+	cout << "Test of getSharedString passed " << passed << "/2 tests." << endl;
 	passed = test_getSheetNames();
-	cout << "Get getSheetNames passed " << passed << "/1 tests." << endl;
+	cout << "Test of getSheetNames passed " << passed << "/1 tests." << endl;
 }
 
 int test_openExcelFile()
@@ -41,6 +44,33 @@ int test_openExcelFile()
 	}
 	return test_passes;
 }
+
+int test_closeExcelFile()
+{
+	int test_passes = 0;
+	ExcelParser *parser = ExcelParser::getInstance();
+	string test_name = string(PROJECT_DIRECTORY) + string("/input/TestBook.xlsx");
+	try
+	{
+		parser->openExcelFile(test_name);
+		sheet s = parser->getSheet(test_name, "sheet");
+		parser->closeExcelFile(test_name);
+		try
+		{
+			parser->getSheet(test_name, "sheet");
+		}
+		catch (runtime_error error)
+		{
+			++test_passes;
+		}
+	}
+	catch (runtime_error e)
+	{
+		cout << e.what() << endl;
+	}
+	return test_passes;
+}
+
 int test_getSheet()
 {
 	int test_passes = 0;

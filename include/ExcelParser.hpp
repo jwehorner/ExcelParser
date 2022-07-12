@@ -160,6 +160,12 @@ namespace excel_parser
         static void openExcelFile(std::string file_name);
 
         /**
+         * @brief           Method closeExcelFile closes and discards the data of an Excel file.
+         * @param file_name string name of the file to be opened.
+         */
+        static void closeExcelFile(std::string file_name);
+
+        /**
          * @brief               Method getSheet returns the sheet object with the given name from the specified file.
          * @param file_name     string name of the file which the sheet is in.
          * @param sheet_name    string name of the sheet of which to get the associated object.
